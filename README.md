@@ -94,10 +94,18 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O token deve ser armazenado na aplicação e enviado a todas as requisições seguintes.
 ### Tela do jogo:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
+   - O header deve conter o nome do usuario e o placar.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
-   - Para perguntas com `type="boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
-   - Para perguntas com `type="multiple"`, mostrar a quantidade necessaria de campos (uma para cada resposta possivel).
-   - 
+   - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario.
+   - Para perguntas com `type:"boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
+   - Para perguntas com `type:"multiple"`, mostrar a quantidade necessaria de campos (uma para cada resposta possivel).
+   - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
+   - Ao clickar na resposta incorreta, todas as incorretas devem ficar vermelhas e a correta, verde.
+   - Ao clickar na resposta correta, 10 pontos devem ser somados no placar do jogador.
+   - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
+   - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
+### Tela de feedback:
+
 
 ## Instruções para entregar seu projeto:
 
