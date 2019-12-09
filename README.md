@@ -97,6 +97,8 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O header deve conter o nome do usuario e o placar.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
    - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario.
+   - As respostas devem ser mostradas em ordem aleatoria.
+   - 
    - Para perguntas com `type:"boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
    - Para perguntas com `type:"multiple"`, mostrar a quantidade necessaria de campos (uma para cada resposta possivel).
    - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
