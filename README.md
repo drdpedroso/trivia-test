@@ -35,8 +35,8 @@ Além dos testes automatizados, você tambem deve escrever testes unitários que
 
 A [API do Trivia](https://opentdb.com/api_config.php) é bem simples. Temos 2 endpoints que vamos precisar utilizar para esse exercicio.
 
-* **Pegar perguntas e respostas**
 * **Pegar o token de sessão do jogador**
+* **Pegar perguntas e respostas**
 
 Primeiro, é necessario fazer um GET request para:
 
@@ -54,7 +54,7 @@ Esse endpoint te retornará o token que vai ser utilizado nas requisições segu
 }
 ```
 
-Paga pegar as perguntas, você vai acessar o seguinte endpoint:
+Paga pegar as perguntas, você realizar um GET request para o seguinte endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade de perguntas retornadas}&token=${seu token aqui}
@@ -102,6 +102,15 @@ Essa API te retorna as perguntas no seguinte formato:
 }
 ```
 
+Caso o token seja inválido, essa será a resposta da API:
+
+```
+{ 
+   "response_code":3,
+   "results":[]
+}
+```
+
 ## Requisitos do projeto
 
 ⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate** e do **TravisCI**
@@ -140,7 +149,8 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O placar do jogador deve ser mostrado.
    - O numero de perguntas que o jogador acertou devem ser mostradas.
    - Ao clickar no botao "Jogar novamente" o jogador deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
-   
+  
+  Além dos requisitos funcionais, a cobertura de testes deve atingir **40%**.
 
 ## Instruções para entregar seu projeto:
 
@@ -156,8 +166,8 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
     * `npm install`
   * Inicialize o projeto:
     * `npm start` (uma nova página deve abrir no seu navegador com um texto simples)
-  * Verifique que os testes estão executando:
-    * `npm test` (os testes devem rodar e falhar)
+  * Verifique que os testes E2E estão executando:
+    * `npm run cy` (os testes devem rodar e falhar)
 
 3. Crie uma branch a partir da branch `master`
   * Verifique que você está na branch `master`
@@ -167,15 +177,6 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
   * Agora, crie uma branch onde você vai guardar os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
     * Exemplo: `git checkout -b joaozinho-movie-card-library`
-
-4. Crie a pasta `components` dentro da pasta `src` e um arquivo `Header.jsx` dentro dessa pasta:
-  * Verifique que você está na raiz do projeto
-    * Exemplo: `pwd` -> o retorno vai ser algo tipo _/Users/joaozinho/code/**sd-01-week10-movie-card-library**_
-  * Crie a pasta `components` e o arquivo `Header.jsx`
-    * Exemplo:
-      * `mkdir src/components`
-      * `touch src/components/Header.jsx`
-      * `echo "// Iniciando o projeto 🚀" > src/components/Header.jsx`
 
 5. Adicione as mudanças ao _stage_ do Git e faça um `commit`
   * Verifique que as mudanças ainda não estão no _stage_
