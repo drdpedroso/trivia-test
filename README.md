@@ -118,7 +118,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
    - O header deve conter o nome do usuario e o placar.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
-   - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario.
+   - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario. Essas informações devem vir dos campos `category` e `question` respectivamente.
    - As respostas devem ser mostradas em ordem aleatoria, misturando as incorretas com a correta.
    - So e possivel escolher uma resposta correta por pergunta.
    - Para perguntas com `type:"boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
@@ -131,7 +131,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
    - 4 segundos apos a resposta ser dada, a proxima pergunta deve aparecer.
    - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
-   - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa.
+   - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
 ### Tela de feedback:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
    - Deve-se mostrar o placar no header junto com o nome do jogador.
@@ -139,7 +139,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - A mensagem deve ser "Mandou bem!" caso o jogador acerte 3 perguntas ou mais.
    - O placar do jogador deve ser mostrado.
    - O numero de perguntas que o jogador acertou devem ser mostradas.
-   - Ao clickar no botao "Jogar novamente" o jogador deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa.
+   - Ao clickar no botao "Jogar novamente" o jogador deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
    
 
 ## Instruções para entregar seu projeto:
