@@ -25,14 +25,11 @@ Para ver os comentários sobre cada componente, basta clickar no icone de coment
 
 Este repositório já contem um _template_ com um App React criado, configurado e com os testes automatizados que fazem parte da correção. Após clonar o projeto e instalar as dependências, você precisará montar toda a configuração do Redux.
 
+Para o projeto ser validado, todos os testes E2E devem passar. É possivel testar isso local rodando `npm run cy`. Esse comando roda a suite de testes do Cypress que valida se o fluxo geral e os requisitos funcionais estão funcionando como deveriam. Esses testes não consideram o layout de maneira geral, mas sim os atributos e informações corretas, então preste atenção nos atributos definidos no prototipo.
 
-A primeira parte da saída mostra um sumário de cada teste e seu status. Um ❌ representa um teste falhando, enquanto um ✅ representa um teste correto. Naturalmente, no início todos os testes estarão falhando.
+Os testes te darão uma mensagem de erro caso não estejam passando (seja qual for o motivo).
 
-Abaixo do sumário, para cada teste falhando, há uma mensagem explicativa sobre o motivo que causou a falha do teste, assim como a linha em que a falha ocorreu. Na imagem, vemos que o teste falha porque o componente `Header`, utilizado na linha 38, não está definido.
-
-Para o projeto ser validado, todos os testes E2E devem passar. É possivel testar isso local rodando `npm run cy`. Esse comando roda a suite de testes do Cypress que valida se o fluxo geral e os requisitos funcionais estão funcionando como deveriam. Esses testes não consideram o layout de maneira geral, mas sim os atributos e informações corretas, então preste atenção nos atributos definidos no prototipo
-
-Além dos testes automatizados 
+Além dos testes automatizados, você tambem deve escrever testes unitários que devem cobrir 40% do projeto. Na [documentação do Jest CLI](https://jestjs.io/docs/en/cli) é possivel ver como essa cobertura é coletada.
 
 ## Requisitos do projeto
 
