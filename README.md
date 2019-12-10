@@ -33,7 +33,7 @@ Além dos testes automatizados, você tambem deve escrever testes unitários que
 
 ### Trivia API
 
-A API é bem simples. Temos 2 endpoints que vamos precisar utilizar para esse exercicio.
+A [API do Trivia](https://opentdb.com/api_config.php) é bem simples. Temos 2 endpoints que vamos precisar utilizar para esse exercicio.
 
 * **Pegar perguntas e respostas**
 * **Pegar o token de sessão do jogador**
@@ -57,7 +57,7 @@ Esse endpoint te retornará o token que vai ser utilizado nas requisições segu
 Paga pegar as perguntas, você vai acessar o seguinte endpoint:
 
 ```
-https://opentdb.com/api.php?amount=10&token=${seu token aqui}
+https://opentdb.com/api.php?amount=${quantidade de perguntas retornadas}&token=${seu token aqui}
 ```
 
 Essa API te retorna as perguntas no seguinte formato:
