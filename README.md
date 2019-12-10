@@ -8,7 +8,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 Você deverá desenvolver um jogo de perguntas e respostas baseado no jogo **Trivia** (tipo um show do milhão americano rs) utilizando React e Redux.
 
-O app começa com uma tela onde o jogador coloca seu nome. Logo após, ele é redirecionado para o jogo onde ele deve escolher uma das respostas disponiveis para cada uma das perguntas. Cada acerto dá ao jogador 10 pontos que deverão ser computados num placar no header da aplicação. Após 10 perguntas respondidas, o jogador é redirecionado para uma tela de score, onde o texto mostrado vai depender do número de acertos.
+O app começa com uma tela onde o jogador coloca seu nome. Logo após, ele é redirecionado para o jogo onde ele deve escolher uma das respostas disponiveis para cada uma das perguntas. Cada acerto dá ao jogador 10 pontos que deverão ser computados num placar no header da aplicação. Após 5 perguntas respondidas, o jogador é redirecionado para uma tela de score, onde o texto mostrado vai depender do número de acertos.
 
 Você pode acessar um protótipo no link abaixo:
 
