@@ -31,6 +31,77 @@ Os testes te darão uma mensagem de erro caso não estejam passando (seja qual f
 
 Além dos testes automatizados, você tambem deve escrever testes unitários que devem cobrir 40% do projeto. Na [documentação do Jest CLI](https://jestjs.io/docs/en/cli) é possivel ver como essa cobertura é coletada.
 
+### Trivia API
+
+A API é bem simples. Temos 2 endpoints que vamos precisar utilizar para esse exercicio.
+
+* **Pegar perguntas e respostas**
+* **Pegar o token de sessão do jogador**
+
+Primeiro, é necessario fazer um GET request para:
+
+```
+https://opentdb.com/api_token.php?command=request
+```
+
+Esse endpoint te retornará o token que vai ser utilizado nas requisições seguintes. Esse token expira em 6 horas e te retornará um `response_code: 3` caso esteja expirado.
+
+```
+{ 
+   "response_code":0,
+   "response_message":"Token Generated Successfully!",
+   "token":"f00cb469ce38726ee00a7c6836761b0a4fb808181a125dcde6d50a9f3c9127b6"
+}
+```
+
+Paga pegar as perguntas, você vai acessar o seguinte endpoint:
+
+```
+https://opentdb.com/api.php?amount=10&token=${seu token aqui}
+```
+
+Essa API te retorna as perguntas no seguinte formato:
+
+```
+// tipo multipla escolha
+{ 
+   "response_code":0,
+   "results":[ 
+      { 
+         "category":"Entertainment: Video Games",
+         "type":"multiple",
+         "difficulty":"easy",
+         "question":"What is the first weapon you acquire in Half-Life?",
+         "correct_answer":"A crowbar",
+         "incorrect_answers":[ 
+            "A pistol",
+            "The H.E.V suit",
+            "Your fists"
+         ]
+      }
+   ]
+}
+```
+
+```
+// tipo booleana
+{ 
+   "response_code":0,
+   "results":[ 
+      { 
+         "category":"Entertainment: Video Games",
+         "type":"boolean",
+         "difficulty":"hard",
+         "question":"TF2: Sentry rocket damage falloff is calculated based on the distance between the sentry and the enemy, not the engineer and the enemy",
+         "correct_answer":"False",
+         "incorrect_answers":[ 
+            "True"
+         ]
+      }
+   ]
+}
+```
+
 ## Requisitos do projeto
 
 ⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate** e do **TravisCI**
@@ -52,12 +123,14 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - So e possivel escolher uma resposta correta por pergunta.
    - Para perguntas com `type:"boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
    - Para perguntas com `type:"multiple"`, mostrar a quantidade necessaria de campos (uma para cada resposta possivel).
+   - As respostas incorretas são representadas por um array na chave `incorrect_answers`.
+   - A resposta correta é representada pelo valor na chave `correct_answer`.
    - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
    - Ao clickar na resposta incorreta, todas as incorretas devem ficar vermelhas e a correta, verde.
    - Ao clickar na resposta correta, 10 pontos devem ser somados no placar do jogador.
    - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
    - 4 segundos apos a resposta ser dada, a proxima pergunta deve aparecer.
-   - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.\
+   - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
    - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa.
 ### Tela de feedback:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
