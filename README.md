@@ -23,62 +23,16 @@ Para ver os comentários sobre cada componente, basta clickar no icone de coment
 
 ## Desenvolvimento e testes
 
-Este repositório já contem um _template_ com um App React criado e configurado. Após clonar o projeto e instalar as dependências (mais sobre isso abaixo), você não precisará realizar nenhuma configuração adicional. Você deverá completar este _template_ implementando os requisitos listados na próxima seção.
+Este repositório já contem um _template_ com um App React criado, configurado e com os testes automatizados que fazem parte da correção. Após clonar o projeto e instalar as dependências, você precisará montar toda a configuração do Redux.
 
-Será necessário criar quatro `React Components`:
-
-   - Header
-   - MovieList
-   - MovieCard
-   - Rating
-
-Cada componente representa uma parte específica do site, conforme ilustrado abaixo:
-
-![image](site-outline.png)
-
-Todos os componentes devem ser criados dentro da pasta `src/components`. **É importante que seus componentes tenham exatamente os nomes listados acima**.
-
-Todos os requisitos do projeto serão testados automaticamente. Os testes para cada requisitos estão no arquivo `src/App.test.js`. Gaste um tempo lendo-o para entender como os testes estão organizados.
-
-Para executar os testes localmente, digite no terminal o comando `npm test`. Inicialmente, seus testes estarão assim:
-
-![image](failing-tests.png)
 
 A primeira parte da saída mostra um sumário de cada teste e seu status. Um ❌ representa um teste falhando, enquanto um ✅ representa um teste correto. Naturalmente, no início todos os testes estarão falhando.
 
 Abaixo do sumário, para cada teste falhando, há uma mensagem explicativa sobre o motivo que causou a falha do teste, assim como a linha em que a falha ocorreu. Na imagem, vemos que o teste falha porque o componente `Header`, utilizado na linha 38, não está definido.
 
-Se fizermos uma implementação simples do componente `Header`, que não renderiza nada:
+Para o projeto ser validado, todos os testes E2E devem passar `
 
-```jsx
-import React from 'react';
-
-class Header extends React.Component {
-  render() {
-  }
-}
-
-export default Header;
-```
-
-E descomentarmos a linha que importa o componente `Header` em `App.test.js`:
-
-```js
-// import App from './App';
-import Header from './components/Header';
-// import MovieCard from './components/MovieCard';
-// import MovieList from './components/MovieList';
-// import Rating from './components/Rating';
-```
-
-Veremos que o primeiro teste agora passa:
-
-![image](first-green-test.png)
-
-Quando seu projeto estiver terminado, todos os testes deverão estar passando:
-
-![image](all-green.png)
-
+Além dos testes automatizados 
 
 ## Requisitos do projeto
 
@@ -97,17 +51,26 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O header deve conter o nome do usuario e o placar.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
    - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario.
-   - As respostas devem ser mostradas em ordem aleatoria.
-   - 
+   - As respostas devem ser mostradas em ordem aleatoria, misturando as incorretas com a correta.
+   - So e possivel escolher uma resposta correta por pergunta.
    - Para perguntas com `type:"boolean"`, mostrar somente 2 campos (uma para cada resposta possivel).
    - Para perguntas com `type:"multiple"`, mostrar a quantidade necessaria de campos (uma para cada resposta possivel).
    - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
    - Ao clickar na resposta incorreta, todas as incorretas devem ficar vermelhas e a correta, verde.
    - Ao clickar na resposta correta, 10 pontos devem ser somados no placar do jogador.
    - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
-   - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
+   - 4 segundos apos a resposta ser dada, a proxima pergunta deve aparecer.
+   - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.\
+   - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa.
 ### Tela de feedback:
-
+   - Todos os elementos devem respeitar os atributos descritos no protótipo.
+   - Deve-se mostrar o placar no header junto com o nome do jogador.
+   - A mensagem deve ser "Podia ser melhor..." caso o jogador acerte menos de 3 perguntas. 
+   - A mensagem deve ser "Mandou bem!" caso o jogador acerte 3 perguntas ou mais.
+   - O placar do jogador deve ser mostrado.
+   - O numero de perguntas que o jogador acertou devem ser mostradas.
+   - Ao clickar no botao "Jogar novamente" o jogador deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa.
+   
 
 ## Instruções para entregar seu projeto:
 
