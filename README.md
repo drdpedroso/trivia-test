@@ -125,7 +125,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O token deve ser armazenado na aplicação e enviado a todas as requisições seguintes.
 ### Tela do jogo:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
-   - O header deve conter o nome do usuario e o placar.
+   - O header deve conter o nome do usuario (digitado na tela de inicio) e o placar zerado.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
    - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario. Essas informações devem vir dos campos `category` e `question` respectivamente.
    - As respostas devem ser mostradas em ordem aleatoria, misturando as incorretas com a correta.
