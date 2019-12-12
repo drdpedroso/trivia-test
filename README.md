@@ -153,8 +153,12 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O placar do jogador deve ser mostrado.
    - O numero de perguntas que o jogador acertou devem ser mostradas.
    - Ao clickar no botao "Jogar novamente" o jogador deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
+### Tela de ranking:
+   - Todos os elementos devem respeitar os atributos descritos no protótipo.
+   - Deve-se mostrar uma lista com nome e pontuação dos jogadore em ordem decrescente (da maior pontuação para a menor).
+   - O ranking deve ser armazenado no navegador.
   
-  Além dos requisitos funcionais, a cobertura de testes deve atingir **40%**.
+Além dos requisitos funcionais, a cobertura de testes deve atingir **40%**.
 
 ## Instruções para entregar seu projeto:
 
