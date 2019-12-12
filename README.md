@@ -8,7 +8,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 Você deverá desenvolver um jogo de perguntas e respostas baseado no jogo **Trivia** (tipo um show do milhão americano rs) utilizando React e Redux.
 
-O app começa com uma tela onde o jogador coloca seu nome. Logo após, ele é redirecionado para o jogo onde ele deve escolher uma das respostas disponiveis para cada uma das perguntas. Cada acerto dá ao jogador 10 pontos que deverão ser computados num placar no header da aplicação. Após 5 perguntas respondidas, o jogador é redirecionado para uma tela de score, onde o texto mostrado vai depender do número de acertos.
+O app começa com uma tela onde o jogador coloca seu nome. Logo após, ele é redirecionado para o jogo onde ele deve escolher uma das respostas disponiveis para cada uma das perguntas. Cada acerto dá ao jogador pontos que deverão ser computados num placar no header da aplicação. Após 5 perguntas respondidas, o jogador é redirecionado para uma tela de score, onde o texto mostrado vai depender do número de acertos.
 
 Você pode acessar um protótipo no link abaixo:
 
@@ -136,7 +136,11 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - A resposta correta é representada pelo valor na chave `correct_answer`.
    - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
    - Ao clickar na resposta incorreta, todas as incorretas devem ficar vermelhas e a correta, verde.
-   - Ao clickar na resposta correta, 10 pontos devem ser somados no placar do jogador.
+   - Ao clickar na resposta correta, pontos devem ser somados no placar do jogador.
+   - O jogador tem 20 segundos para responder cada pergunta. Um temporizador deve aparecer na tela do usuario. 
+   - A formula para calculo dos pontos por pergunta é: `10 + timer * dificuldade`, onde `timer` é o tempo restante no contador de tempo e dificuldade é `hard: 3, medium: 2, easy: 1`, dependendo da pergunta.
+   - Caso a pergunta não seja respondida a tempo, a pergunta é considerada errada.
+   - Respostas incorretas não somam pontos ao placar.
    - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
    - 4 segundos apos a resposta ser dada, a proxima pergunta deve aparecer.
    - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
