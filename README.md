@@ -162,9 +162,9 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - O ranking deve ser armazenado no navegador.
 ### Tela de configurações:
   - Todos os elementos devem respeitar os atributos descritos no protótipo.
-  - Ao mudar o valor do dropdown `categoria`, apenas perguntas da categoria selecionada devem aparecer para o jogador.
-  - Ao mudar o valor do dropdown `dificuldade`, apenas perguntas da dificuldade selecionada devem aparecer para o jogador.
-  - Ao mudar o valor do dropdown `tipo`, apenas perguntas do tipo selecionado devem aparecer para o jogador.
+  - Ao mudar o valor do dropdown `categoria`, apenas perguntas da categoria selecionada devem aparecer para o jogador, identificado pela chave `category` no retorno da API.
+  - Ao mudar o valor do dropdown `dificuldade`, apenas perguntas da dificuldade selecionada devem aparecer para o jogador,identificado pela chave `dificulty` no retorno da API.
+  - Ao mudar o valor do dropdown `tipo`, apenas perguntas do tipo selecionado devem aparecer para o jogador, identificado pela chave `type` no retorno da API.
   PS: A maneira como a API deve ser estruturada segue o seguinte modelo: https://opentdb.com/api_config.php
   
   
