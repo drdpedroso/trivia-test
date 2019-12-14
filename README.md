@@ -120,6 +120,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
 ### Tela de inicio:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
    - O jogador deve conseguir escrever seu nome no input de texto.
+   - O Botão no canto superior direito leva para a tela de configurações.
    - Após clickar no botão "Jogar", ele deve ser redirecionado para a tela do jogo.
    - Ao clickar no botão "Jogar", uma requisição para a API do Trivia deve ser feita para pegar o token de jogador.
    - O token deve ser armazenado na aplicação e enviado a todas as requisições seguintes.
@@ -147,6 +148,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
 ### Tela de feedback:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
+   - O Botão no canto superior direito leva para a tela de configurações.
    - Deve-se mostrar o placar no header junto com o nome do jogador.
    - A mensagem deve ser "Podia ser melhor..." caso o jogador acerte menos de 3 perguntas. 
    - A mensagem deve ser "Mandou bem!" caso o jogador acerte 3 perguntas ou mais.
@@ -158,6 +160,13 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
    - Deve-se mostrar uma lista com nome e pontuação dos jogadore em ordem decrescente (da maior pontuação para a menor).
    - O ranking deve ser armazenado no navegador.
+### Tela de configurações:
+  - Todos os elementos devem respeitar os atributos descritos no protótipo.
+  - Ao mudar o valor do dropdown `categoria`, apenas perguntas da categoria selecionada devem aparecer para o jogador.
+  - Ao mudar o valor do dropdown `dificuldade`, apenas perguntas da dificuldade selecionada devem aparecer para o jogador.
+  - Ao mudar o valor do dropdown `tipo`, apenas perguntas do tipo selecionado devem aparecer para o jogador.
+  PS: A maneira como a API deve ser estruturada segue o seguinte modelo: https://opentdb.com/api_config.php
+  
   
 Além dos requisitos funcionais, a cobertura de testes deve atingir **40%**.
 
