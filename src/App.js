@@ -34,7 +34,7 @@ export default function App() {
           <nav>
             <ul>
               <div data-testid="header-player-name">{state.player.name}</div>
-              <div data-testid="header-score">{state.player.name ? state.player.score : null}</div>
+              <div ><span data-testid="header-score">{state.player.name ? state.player.score : null}</span></div>
               {/*<li>*/}
               {/*  <Link to="/">Home</Link>*/}
               {/*</li>*/}
@@ -104,13 +104,15 @@ function Game(props) {
 
   React.useEffect(() => {
     let interval = null;
-    if (isActive) {
+    console.log(seconds)
+    if (isActive && seconds > 0) {
       interval = setInterval(() => {
         setSeconds(seconds => seconds - 1);
       }, 1000);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
-    } else if (seconds === 0) {
+    } else {
+      selectQuestion('')
       clearInterval(interval);
     }
     return () => clearInterval(interval);
@@ -145,7 +147,6 @@ function Game(props) {
   }
 
   const selectQuestion = (a) => {
-    // const correct = shuffled.filter((e, index) => e === q.correct_answer)
     setIsActive(false)
     const correctIndex = shuffled.findIndex((e) => e === q.correct_answer)
     setCorrectIndex(correctIndex)
@@ -184,20 +185,22 @@ function Game(props) {
 
   return (
       <div style={{backgroundColor: '#CCC', height: 500}}>
-        <div>{q.category}</div>
-        <div>
+        <div data-testid="question-category">{q.category}</div>
+        <div data-testid="question-text">
           {q.question}
         </div>
         <div>
           <ul>
             {shuffled.map((a, i) => {
-              return <li style={{color: correctIndex === null ? '' : i === correctIndex ? 'green' : 'red'}}><button onClick={() => selectQuestion(a)}>{a}</button></li>
+              return <li style={{color: correctIndex === null ? '' : i === correctIndex ? 'green' : 'red'}}>
+                <button data-testid={a === q.correct_answer ? 'correct-answer' : `wrong-answer-${i}`} onClick={() => selectQuestion(a)}>{a}</button>
+              </li>
             })}
           </ul>
         </div>
-        <button onClick={() => next()}>Proxima</button>
-        <div>
-          Tempo: {seconds}
+        <button onClick={() => next()} data-testid="btn-next">Proxima</button>
+        <div >
+          Tempo: <span data-testid="timer">{seconds}</span>
         </div>
       </div>
   )
@@ -215,7 +218,7 @@ function Ranking(props) {
     <h2>Ranking</h2>
     <div>{
       Object.keys(ranking).map((k) => {
-        return <div key={k}>{k} - {ranking[k]}</div>
+        return <div key={k}><span  data-testid={k}>{k} - {ranking[k]}</span></div>
       })
     }</div>
 

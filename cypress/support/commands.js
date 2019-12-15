@@ -10,7 +10,14 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
+Cypress.Commands.add("addPlayer", (name, score = 0) => {
+    window.localStorage.setItem('state', JSON.stringify({
+        player: {
+            name,
+            score
+        }
+    }))
+})
 //
 //
 // -- This is a child command --
