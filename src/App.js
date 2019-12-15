@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Link,
+  useParams,
   useHistory
 } from "react-router-dom";
 import axios from 'axios'
@@ -14,6 +15,7 @@ export default function App() {
   const [globalState, setGlobalState] = useState(JSON.parse(localStorage.getItem('state')) || {
     player: {
       name: '',
+      accertions: 0,
       score: 0
     },
     config: {
@@ -56,6 +58,9 @@ export default function App() {
             <Route path="/ranking">
               <Ranking setState={setState}/>
             </Route>
+            <Route path="/feedback">
+              <FeedbackPage setState={setState} state={state}/>
+            </Route>
             <Route path="/">
               <Home setState={setState}/>
             </Route>
@@ -74,7 +79,18 @@ function Home(props) {
   }
 
   const goToGame = () => {
-    history.push('/game')
+
+      axios({
+        method: 'get',
+        url: 'https://opentdb.com/api_token.php?command=request',
+      })
+          .then(function (response) {
+            // setIsActive(true)
+            // setQuestions(response.data.results)
+            // setShuffled(shuffleAnswers(response.data.results[question]))
+            localStorage.setItem('token', response.token)
+            history.push('/game')
+          });
   }
 
   return <div style={{backgroundColor: '#CCC', height: 500}}>
@@ -104,7 +120,6 @@ function Game(props) {
 
   React.useEffect(() => {
     let interval = null;
-    console.log(seconds)
     if (isActive && seconds > 0) {
       interval = setInterval(() => {
         setSeconds(seconds => seconds - 1);
@@ -119,11 +134,16 @@ function Game(props) {
   }, [isActive, seconds])
 
   React.useEffect(() => {
+    const token = localStorage.getItem('token')
     axios({
       method: 'get',
-      url: 'https://opentdb.com/api.php?amount=5',
+      url: `https://opentdb.com/api.php?amount=5&token=${token}`,
     })
         .then(function (response) {
+          if(response.data.response_code == 3) {
+            localStorage.clear()
+            return history.push('/')
+          }
           setIsActive(true)
           setQuestions(response.data.results)
           setShuffled(shuffleAnswers(response.data.results[question]))
@@ -153,7 +173,7 @@ function Game(props) {
     if (a === q.correct_answer) {
       props.setState({
         ...props.state,
-        player: {...props.state.player, score: props.state.player.score + calculatePoints()}
+        player: {...props.state.player, score: props.state.player.score + calculatePoints(), accertions: props.state.player.accertions + 1}
       })
      return true
     }
@@ -166,7 +186,7 @@ function Game(props) {
       const ranking = JSON.parse(localStorage.getItem('ranking') || '{}')
       const newRanking = {...ranking, [props.state.player.name]: props.state.player.score}
       localStorage.setItem('ranking', JSON.stringify(newRanking))
-      return history.push('/ranking')
+      return history.push('/feedback')
     }
     setIsActive(true)
     setQuestion(question + 1)
@@ -204,6 +224,37 @@ function Game(props) {
         </div>
       </div>
   )
+}
+
+function FeedbackPage(props) {
+  const {player} = props.state
+  const getMessage = () => {
+    if (player.accertions < 3 ) {
+      return 'Podia ser melhor...'
+    } else {
+      return 'Mandou bem!'
+    }
+  }
+
+  const message = getMessage()
+  return (
+      <div>
+        <h2 data-testid="feedback-text">{message}</h2>
+        <div>
+          <span data-testid="feedback-total-question">
+            Você acertou {player.accertions} questões!
+          </span>
+          <span data-testid="feedback-total-score">
+            Um total de {player.score} pontos
+          </span>
+        </div>
+        <div>
+          <button data-testid="btn-ranking">ranking</button>
+          <button data-testid="btn-play-again">jogar novamente</button>
+        </div>
+      </div>
+  )
+
 }
 
 function Ranking(props) {

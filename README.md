@@ -143,7 +143,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Caso a pergunta não seja respondida a tempo, a pergunta é considerada errada.
    - Respostas incorretas não somam pontos ao placar.
    - Ao clickar na resposta incorreta, nenhum ponto é computador no placar.
-   - 4 segundos apos a resposta ser dada, a proxima pergunta deve aparecer.
+   - Após a resposta ser dada, o botão 'Proxima' deve aparecer. Ao clickar nesse botão, a próxima pergunta deve aparecer na tela. 
    - Após responder 5 perguntas, o jogador deve ser redirecionado para a tela de feedback.
    - Caso a API retorne um `response_code: 3`, o usuario deve ser redirecionado para a tela de inicio, sem nenhuma informacao previa salva.
 ### Tela de feedback:

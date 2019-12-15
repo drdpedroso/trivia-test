@@ -10,13 +10,26 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("addPlayer", (name, score = 0) => {
+Cypress.Commands.add("addPlayer", (name, score = 0, accertions = 0) => {
     window.localStorage.setItem('state', JSON.stringify({
         player: {
             name,
+            accertions,
             score
         }
     }))
+})
+
+Cypress.Commands.add('setToken', () => {
+    cy.request({
+        method: 'GET',
+        url: 'https://opentdb.com/api_token.php?command=request',
+    })
+        .then((resp) => {
+            console.log({resp})
+            window.localStorage.setItem('token', resp.body.token)
+        })
+
 })
 //
 //
