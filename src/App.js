@@ -15,7 +15,7 @@ export default function App() {
   const [globalState, setGlobalState] = useState(JSON.parse(localStorage.getItem('state')) || {
     player: {
       name: '',
-      accertions: 0,
+      assertions: 0,
       score: 0
     },
     config: {
@@ -173,7 +173,7 @@ function Game(props) {
     if (a === q.correct_answer) {
       props.setState({
         ...props.state,
-        player: {...props.state.player, score: props.state.player.score + calculatePoints(), accertions: props.state.player.accertions + 1}
+        player: {...props.state.player, score: props.state.player.score + calculatePoints(), assertions: props.state.player.assertions + 1}
       })
      return true
     }
@@ -229,7 +229,7 @@ function Game(props) {
 function FeedbackPage(props) {
   const {player} = props.state
   const getMessage = () => {
-    if (player.accertions < 3 ) {
+    if (player.assertions < 3 ) {
       return 'Podia ser melhor...'
     } else {
       return 'Mandou bem!'
@@ -242,7 +242,7 @@ function FeedbackPage(props) {
         <h2 data-testid="feedback-text">{message}</h2>
         <div>
           <span data-testid="feedback-total-question">
-            Você acertou {player.accertions} questões!
+            Você acertou {player.assertions} questões!
           </span>
           <span data-testid="feedback-total-score">
             Um total de {player.score} pontos

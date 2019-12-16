@@ -170,6 +170,29 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
   
 Além dos requisitos funcionais, a cobertura de testes deve atingir **40%**.
 
+### Implementações tecnicas
+
+Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de correção funcionem corretamente.
+
+**Player**
+
+No `localStorage` do navegador:
+* a chave `player` deve conter a seguinte estrutura:
+```
+player: {
+    name,
+    assertions,
+    score
+}
+```
+
+* a chave `ranking` deve conter a seguinte estrutura:
+```
+[nome-do-jogador]: valor-do-score
+``` 
+
+* a chave `token` deve conter o valor do token recebido na API do Trivia.
+
 ## Instruções para entregar seu projeto:
 
 ### ANTES DE COMEÇAR A DESENVOLVER:
