@@ -38,7 +38,7 @@ describe('Game', () => {
         cy.wait(300)
         cy.tick(5000)
         cy.get('[data-testid="timer"]').contains('25')
-        cy.get('[data-testid="wrong-answer-0"]').click();
+        cy.get('[data-testid="wrong-answer-1"]').click();
         cy.get('[data-testid="header-score"]').then(($span) => {
             const elementScore = $span.text();
             expect(Number(elementScore)).to.be.gt(minExpectedScoreValue + minExpectedScoreValue)

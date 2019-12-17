@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios'
 import shuffle from 'lodash/shuffle'
+import sortBy from 'lodash/sortBy'
 import isEqual from 'lodash/isEqual'
 
 export default function App() {
@@ -88,7 +89,8 @@ function Home(props) {
             // setIsActive(true)
             // setQuestions(response.data.results)
             // setShuffled(shuffleAnswers(response.data.results[question]))
-            localStorage.setItem('token', response.token)
+            debugger
+            localStorage.setItem('token', response.data.token)
             history.push('/game')
           });
   }
@@ -135,6 +137,7 @@ function Game(props) {
 
   React.useEffect(() => {
     const token = localStorage.getItem('token')
+    console.log(token)
     axios({
       method: 'get',
       url: `https://opentdb.com/api.php?amount=5&token=${token}`,
@@ -173,7 +176,9 @@ function Game(props) {
     if (a === q.correct_answer) {
       props.setState({
         ...props.state,
-        player: {...props.state.player, score: props.state.player.score + calculatePoints(), assertions: props.state.player.assertions + 1}
+        player: {...props.state.player,
+          score: props.state.player.score + calculatePoints(),
+          assertions: props.state.player.assertions + 1}
       })
      return true
     }
@@ -183,8 +188,12 @@ function Game(props) {
   const next = () => {
     setCorrectIndex(null)
     if (question === 4) {
-      const ranking = JSON.parse(localStorage.getItem('ranking') || '{}')
-      const newRanking = {...ranking, [props.state.player.name]: props.state.player.score}
+      const ranking = JSON.parse(localStorage.getItem('ranking') || '[]')
+
+      const newRanking = ranking.concat({
+          name: props.state.player.name,
+          score:props.state.player.score
+      })
       localStorage.setItem('ranking', JSON.stringify(newRanking))
       return history.push('/feedback')
     }
@@ -202,7 +211,7 @@ function Game(props) {
   const calculatePoints = () => {
     return Number(10 + seconds + difficultMap[q.difficulty])
   }
-
+  let wrongAI = 0
   return (
       <div style={{backgroundColor: '#CCC', height: 500}}>
         <div data-testid="question-category">{q.category}</div>
@@ -212,8 +221,12 @@ function Game(props) {
         <div>
           <ul>
             {shuffled.map((a, i) => {
+              if(a !== q.correct_answer) {
+                wrongAI = wrongAI + 1
+
+              }
               return <li style={{color: correctIndex === null ? '' : i === correctIndex ? 'green' : 'red'}}>
-                <button data-testid={a === q.correct_answer ? 'correct-answer' : `wrong-answer-${i}`} onClick={() => selectQuestion(a)}>{a}</button>
+                <button data-testid={a === q.correct_answer ? 'correct-answer' : `wrong-answer-${wrongAI}`} onClick={() => selectQuestion(a)}>{a}</button>
               </li>
             })}
           </ul>
@@ -229,6 +242,7 @@ function Game(props) {
 function FeedbackPage(props) {
   const {player} = props.state
   const getMessage = () => {
+    debugger
     if (player.assertions < 3 ) {
       return 'Podia ser melhor...'
     } else {
@@ -258,7 +272,7 @@ function FeedbackPage(props) {
 }
 
 function Ranking(props) {
-  const [ranking, setRanking] = useState({})
+  const [ranking, setRanking] = useState([])
   React.useEffect(() => {
     const ranking = JSON.parse(localStorage.getItem('ranking'))
     setRanking(ranking)
@@ -268,8 +282,8 @@ function Ranking(props) {
   return <div>
     <h2>Ranking</h2>
     <div>{
-      Object.keys(ranking).map((k) => {
-        return <div key={k}><span  data-testid={k}>{k} - {ranking[k]}</span></div>
+      sortBy(ranking, ['score']).reverse().map((k, index) => {
+        return <div key={k.name}><span data-testid={`${k.name}-${index+1}`}>{k.name} - {k.score}</span></div>
       })
     }</div>
 

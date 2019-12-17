@@ -19,6 +19,9 @@ Cypress.Commands.add("addPlayer", (name, score = 0, assertions = 0) => {
         }
     }))
 })
+Cypress.Commands.add("addRanking", (ranking = []) => {
+    window.localStorage.setItem('ranking', JSON.stringify(ranking))
+})
 
 Cypress.Commands.add('setToken', () => {
     cy.request({

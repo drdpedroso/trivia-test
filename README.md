@@ -188,7 +188,9 @@ player: {
 
 * a chave `ranking` deve conter a seguinte estrutura:
 ```
-[nome-do-jogador]: valor-do-score
+[
+    {name: nome-do-jogador, score: 10}
+]
 ``` 
 
 * a chave `token` deve conter o valor do token recebido na API do Trivia.
