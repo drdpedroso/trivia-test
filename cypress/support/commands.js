@@ -10,12 +10,13 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("addPlayer", (name, score = 0, assertions = 0) => {
+Cypress.Commands.add("addPlayer", (name, score = 0, assertions = 0, gravatarEmail = 'mail@mail.com') => {
     window.localStorage.setItem('state', JSON.stringify({
         player: {
             name,
             assertions,
-            score
+            score,
+            gravatarEmail
         }
     }))
 })

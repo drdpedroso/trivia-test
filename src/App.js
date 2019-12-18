@@ -37,6 +37,7 @@ export default function App() {
           <nav>
             <ul>
               <div data-testid="header-player-name">{state.player.name}</div>
+              <img data-testid="header-profile-picture" src="https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d702dabcf3"/>
               <div ><span data-testid="header-score">{state.player.name ? state.player.score : null}</span></div>
               {/*<li>*/}
               {/*  <Link to="/">Home</Link>*/}
@@ -79,6 +80,11 @@ function Home(props) {
     setName(e.target.value)
   }
 
+  const [email, setEmail] = useState('')
+  const onChangePlayerEmail = (e) => {
+    setEmail(e.target.value)
+  }
+
   const goToGame = () => {
 
       axios({
@@ -94,11 +100,11 @@ function Home(props) {
             history.push('/game')
           });
   }
-
   return <div style={{backgroundColor: '#CCC', height: 500}}>
     <h2>Nome do jogador:</h2>
     <input data-testid="input-player-name" onChange={onChangePlayerName} type="text" />
-    <button data-testid="btn-play" onClick={() => {
+    <input data-testid="input-gravatar-email" onChange={onChangePlayerEmail} type="email" />
+    <button data-testid="btn-play" disabled={!name || !email} onClick={() => {
       props.setState({
         ...props.state,
         player: {
@@ -223,7 +229,6 @@ function Game(props) {
             {shuffled.map((a, i) => {
               if(a !== q.correct_answer) {
                 wrongAI = wrongAI + 1
-
               }
               return <li style={{color: correctIndex === null ? '' : i === correctIndex ? 'green' : 'red'}}>
                 <button data-testid={a === q.correct_answer ? 'correct-answer' : `wrong-answer-${wrongAI}`} onClick={() => selectQuestion(a)}>{a}</button>
@@ -283,7 +288,7 @@ function Ranking(props) {
     <h2>Ranking</h2>
     <div>{
       sortBy(ranking, ['score']).reverse().map((k, index) => {
-        return <div key={k.name}><span data-testid={`${k.name}-${index+1}`}>{k.name} - {k.score}</span></div>
+        return <div key={k.name}><img data-testid={`profile-picture-${index + 1}`}/><span data-testid={`${k.name}-${index+1}`}>{k.name} - {k.score}</span></div>
       })
     }</div>
 

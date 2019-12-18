@@ -58,7 +58,11 @@ Paga pegar as perguntas, você realizar um GET request para o seguinte endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade de perguntas retornadas}&token=${seu token aqui}
+// Recomendação
+https://opentdb.com/api.php?amount=5&token=${seu token aqui}
 ```
+
+Recomendamos pedir 5 perguntas de uma vez e controlar a disposição delas no código. 
 
 Essa API te retorna as perguntas no seguinte formato:
 
@@ -111,6 +115,31 @@ Caso o token seja inválido, essa será a resposta da API:
 }
 ```
 
+### Gravatar
+
+Na tela de Inicio, o usuario pode inputar um e-mail que deve fazer uma consulta a API do [Gravatar](https://br.gravatar.com/site/implement/images/)
+
+A Implementação é feita baseada no e-mail. Esse email deve ser transformado em uma hash `MD5` (https://br.gravatar.com/site/implement/hash/),
+recomendo utilizar o [CryptoJs](https://github.com/brix/crypto-js).
+
+Após a geraçao da hash, basta adicionar o valor gerado no final da URL:
+
+```
+https://www.gravatar.com/avatar/HASH-GERADA
+// Exemplo
+https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50
+// Exemplo
+<img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
+```
+
+Caso o e-mail não tenha uma foto vinculada ao Gravatar, exibir a `default`:
+
+```
+https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3
+```
+
+Lembre-se de manter o `data-testid` correto.
+
 ## Requisitos do projeto
 
 ⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate** e do **TravisCI**
@@ -120,13 +149,14 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
 ### Tela de inicio:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
    - O jogador deve conseguir escrever seu nome no input de texto.
+   - O jogador deve conseguir escrever seu email no input de email.
    - O Botão no canto superior direito leva para a tela de configurações.
    - Após clickar no botão "Jogar", ele deve ser redirecionado para a tela do jogo.
    - Ao clickar no botão "Jogar", uma requisição para a API do Trivia deve ser feita para pegar o token de jogador.
    - O token deve ser armazenado na aplicação e enviado a todas as requisições seguintes.
 ### Tela do jogo:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
-   - O header deve conter o nome do usuario (digitado na tela de inicio) e o placar zerado.
+   - O header deve conter a imagem de perfil vinda do Gravatar, o nome do usuario (digitado na tela de inicio) e o placar zerado.
    - A perguntas e suas respostas devem ser recebidas da API do Trivia.
    - A categoria da pergunta junto com seu texto devem ser mostradas para o usuario. Essas informações devem vir dos campos `category` e `question` respectivamente.
    - As respostas devem ser mostradas em ordem aleatoria, misturando as incorretas com a correta.
@@ -138,7 +168,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Ao clickar na resposta correta, ela deve ficar verde e as incorretas, vermelhas.
    - Ao clickar na resposta incorreta, todas as incorretas devem ficar vermelhas e a correta, verde.
    - Ao clickar na resposta correta, pontos devem ser somados no placar do jogador.
-   - O jogador tem 20 segundos para responder cada pergunta. Um temporizador deve aparecer na tela do usuario. 
+   - O jogador tem 30 segundos para responder cada pergunta. Um temporizador deve aparecer na tela do usuario. 
    - A formula para calculo dos pontos por pergunta é: `10 + timer * dificuldade`, onde `timer` é o tempo restante no contador de tempo e dificuldade é `hard: 3, medium: 2, easy: 1`, dependendo da pergunta.
    - Caso a pergunta não seja respondida a tempo, a pergunta é considerada errada.
    - Respostas incorretas não somam pontos ao placar.
@@ -158,7 +188,7 @@ Nesse projeto, o jogador deve conseguir completar o jogo e conseguir ver seu pla
    - Ao clickar no botao "Ver Ranking" o jogador deve ser redirecionado para a tela de ranking.
 ### Tela de ranking:
    - Todos os elementos devem respeitar os atributos descritos no protótipo.
-   - Deve-se mostrar uma lista com nome e pontuação dos jogadore em ordem decrescente (da maior pontuação para a menor).
+   - Deve-se mostrar uma lista com a imagem de perfil vinda do Gravatar, nome e pontuação dos jogadore em ordem decrescente (da maior pontuação para a menor).
    - O ranking deve ser armazenado no navegador.
 ### Tela de configurações:
   - Todos os elementos devem respeitar os atributos descritos no protótipo.
@@ -182,14 +212,15 @@ No `localStorage` do navegador:
 player: {
     name,
     assertions,
-    score
+    score,
+    gravatarEmail
 }
 ```
 
 * a chave `ranking` deve conter a seguinte estrutura:
 ```
 [
-    {name: nome-do-jogador, score: 10}
+    {name: nome-do-jogador, score: 10, picture: url-da-foto-no-gravatar}
 ]
 ``` 
 
@@ -211,6 +242,7 @@ player: {
     * `npm start` (uma nova página deve abrir no seu navegador com um texto simples)
   * Verifique que os testes E2E estão executando:
     * `npm run cy` (os testes devem rodar e falhar)
+    * `npm run cy:open` (os testes devem rodar e falhar, legal caso queira ver o Cypress funcionando)
 
 3. Crie uma branch a partir da branch `master`
   * Verifique que você está na branch `master`
