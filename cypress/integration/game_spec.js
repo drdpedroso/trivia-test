@@ -9,7 +9,6 @@ describe('Game', () => {
         cy.addPlayer(pName)
         cy.server()
         cy.clock()
-        cy.get('[data-testid="header-profile-picture"]')
         cy.route(`/api.php?*`).as('api')
         cy.visit('http://localhost:3000/game')
         cy.wait('@api')
