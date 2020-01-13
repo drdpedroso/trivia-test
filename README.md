@@ -15,7 +15,9 @@ Você pode acessar um protótipo no link abaixo:
 https://www.figma.com/file/MxuXDNVbiZb69kM9NI0jhZ/Trivia-project?node-id=0%3A1
 
 
-Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI, só respeito os atributos `data-testid`, eles serão usados na correção do exercicio. 
+Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI, só respeito os atributos `data-testid`, eles serão usados na correção do exercicio.
+
+Você pode ler mais sobre atributos para testes [nesse link](https://www.eduardopedroso.com.br/?p=494) 
 
 Para ver os comentários sobre cada componente, basta clickar no icone de comentários no Figma (lado esquerdo superior).
 
